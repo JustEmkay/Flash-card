@@ -36,7 +36,7 @@ def update_fc_questions() -> None:
     print('\nflash_card_questions session.state updated.\n')
 
 def main():    
-    st.header("Search Flash-card 🔎",divider='red',anchor=False)
+    st.header("Search Flash-card 🔎",divider='green',anchor=False)
     search_bar , filter_opt, search_btn = st.columns([3,1,1])
     
     #<- Searchbar ->

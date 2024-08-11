@@ -63,7 +63,7 @@ def main():
     with st.sidebar:
         st.success('Add flash-card selected')
     
-    st.header("Add Flash Card",divider='rainbow',anchor=False)
+    st.header("Add Flash Card",divider='blue',anchor=False)
     
     # -> add card Form <-
     question : str = st.text_input("Enter question:") 
