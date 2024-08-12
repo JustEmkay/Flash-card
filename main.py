@@ -52,13 +52,13 @@ def main():
     c1,c2 = st.columns(2)
     c3,c4 = st.columns(2)
     
-    with c1.container(border=True,height=200):
-        st.image(image='images/flash-card.png',use_column_width='always')
+    # with c1.container(border=True,height=200):
+    c1.image(image='images/flash-card.png',use_column_width='always')
         
     c1.page_link("pages/1_Flash_card.py", label="**Search Flash-Card >>>**", icon="🔎",use_container_width=True)
 
-    with c2.container(border=True,height=200):
-        st.image(image='images/add-flash-card.png',use_column_width='always')
+    # with c2.container(border=True,height=200):
+    c2.image(image='images/add-flash-card.png',use_column_width='always')
     c2.page_link("pages/2_Add_flash_card.py", label="**Create Flash-Card >>>**", icon="✍",use_container_width=True)
         
     with c3.container(border=True,height=200):

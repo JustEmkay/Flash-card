@@ -7,10 +7,7 @@ st.set_page_config(
 
 
 def main():
-    # -> Sidebar for settings <-
-    with st.sidebar:
-        st.success('Settings selected')
-    
+  
     st.header("Settings ⚙",divider='gray',anchor=False)
     
 if __name__ == "__main__" :
