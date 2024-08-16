@@ -40,15 +40,15 @@ def update_fc_questions() -> None:
 #<-----MAIN FUNCTION----->
 def main():    
     st.header("Search Flash-card 🔎",divider='green',anchor=False)
-    search_bar , filter_opt, search_btn = st.columns([3,1,1])
-    
-    #<- Searchbar ->
-    multi = search_bar.multiselect('search bar',options=search_filter(),
-                           placeholder="Enter the question?",
-                          label_visibility='collapsed')
-    if not multi:
-            st.session_state.show_cards = False
-            
+    with st.expander("Select questions:",expanded=True):
+        #<- Searchbar ->
+        multi = st.multiselect('search bar',options=search_filter(),
+                            placeholder="Enter the question?",
+                            label_visibility='collapsed')
+        if not multi:
+                st.session_state.show_cards = False         
+        filter_opt, load_btn = st.columns(2)
+                
     #<- Filter ->
     with filter_opt.popover("Filter",use_container_width=True):
 
@@ -66,8 +66,8 @@ def main():
                 st.session_state.hash_tags_notchecked.remove(tag)
                 st.rerun()
    
-    #<- Search button ->
-    if search_btn.button('Load',type='primary',use_container_width=True):
+    #<- load button ->
+    if load_btn.button('Load',type='primary',use_container_width=True):
         if multi:
             st.session_state.show_cards = True
             st.session_state.show_answer = False

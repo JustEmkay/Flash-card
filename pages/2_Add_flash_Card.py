@@ -5,7 +5,6 @@ from datetime import datetime
 import wikipedia
 
 
-
 # -> session state <-
 if 'tag_list' not in st.session_state: st.session_state.tag_list=None
 
@@ -29,10 +28,8 @@ def tags_to_list(text):
 
 def answer_recommendation(question) -> str:
     try:
-        print('\nFound answer')
         output = wikipedia.summary(question, sentences=15)
         return output
-  
     except:
         st.success("Error get answer recommendation")
 
