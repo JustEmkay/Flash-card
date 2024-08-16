@@ -2,7 +2,6 @@ import streamlit as st
 import re
 from annotated_text import annotated_text
 from datetime import datetime
-import pywhatkit
 import wikipedia
 
 
