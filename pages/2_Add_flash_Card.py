@@ -2,6 +2,7 @@ import streamlit as st
 import re
 from annotated_text import annotated_text
 from datetime import datetime
+import pywhatkit
 
 
 
@@ -25,6 +26,9 @@ def tags_to_list(text):
     flist = [tag.lower() for tag in text if re.search("#",tag)]
     print("text to f-list: ",flist)
     st.session_state.tag_list=flist
+
+def answer_recommendation() -> str:
+    ...
 
 
 # -> Dialogue box <-
@@ -66,15 +70,13 @@ def main():
     st.header("Add Flash Card",divider='blue',anchor=False)
     
     # -> add card Form <-
-    question : str = st.text_input("Enter question:") 
-    answer = st.text_area("Enter answer for above question:")    
-    
-    
+    question : str = st.text_input("Enter question:") #<--- Question input
+    answer = st.text_area("Enter answer for above question:") #<--- Answer input
     hash_tags = st.text_input("Enter tags related to above questions",
                 placeholder="Enter tags related to above questions",
                 help='use white space to input different tags',
                 label_visibility='collapsed',
-                )
+                ) #<--- Hashtag input
     if hash_tags:
         tags_to_list(hash_tags)
     else:
