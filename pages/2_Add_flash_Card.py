@@ -3,6 +3,7 @@ import re
 from annotated_text import annotated_text
 from datetime import datetime
 import pywhatkit
+import wikipedia
 
 
 
@@ -27,8 +28,14 @@ def tags_to_list(text):
     print("text to f-list: ",flist)
     st.session_state.tag_list=flist
 
-def answer_recommendation() -> str:
-    ...
+def answer_recommendation(question) -> str:
+    try:
+        print('\nFound answer')
+        output = wikipedia.summary(question, sentences=15)
+        return output
+  
+    except:
+        st.success("Error get answer recommendation")
 
 
 # -> Dialogue box <-
@@ -70,7 +77,22 @@ def main():
     st.header("Add Flash Card",divider='blue',anchor=False)
     
     # -> add card Form <-
-    question : str = st.text_input("Enter question:") #<--- Question input
+    
+    ans_c,rcmnd_c = st.columns([3,1],vertical_alignment='center')
+    question : str = ans_c.text_input("Enter question:",
+                                      placeholder='Enter question here',
+                                      label_visibility='collapsed') #<--- Question input
+    with rcmnd_c.popover('Suggetion',use_container_width=True):
+        if question:
+            recmd_anwr=answer_recommendation(question)
+            if recmd_anwr:
+                st.toast("Check 'Suggetion' for answer recommendation.")
+                st.success(f"Found an answer for question **'{question}'**")
+                st.write(recmd_anwr)
+        else:
+            st.info("No question asked")
+    
+    
     answer = st.text_area("Enter answer for above question:") #<--- Answer input
     hash_tags = st.text_input("Enter tags related to above questions",
                 placeholder="Enter tags related to above questions",
